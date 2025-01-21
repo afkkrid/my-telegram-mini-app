@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подписки - Manix</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Подписки</h1>
+
+        <!-- Подписка Basic -->
+        <div class="subscription">
+            <h2>Basic</h2>
+            <p>Цена: 10 USDT</p>
+            <button onclick="toggleDescription('basic')" class="btn">Подробнее</button>
+            <div id="basic" class="description">
+                <p>Доступ к базовым функциям:</p>
+                <ul>
+                    <li>Просмотр курсов криптовалют.</li>
+                    <li>Ограниченный доступ к аналитике.</li>
+                    <li>Базовые уведомления.</li>
+                </ul>
+            </div>
+            <button onclick="buySubscription('Basic', 10, 'USDT')" class="btn">Купить</button>
+        </div>
+
+        <!-- Подписка Pro -->
+        <div class="subscription">
+            <h2>Pro</h2>
+            <p>Цена: 20 USDT</p>
+            <button onclick="toggleDescription('pro')" class="btn">Подробнее</button>
+            <div id="pro" class="description">
+                <p>Расширенные функции:</p>
+                <ul>
+                    <li>Расширенная аналитика.</li>
+                    <li>Персональные рекомендации.</li>
+                    <li>Приоритетная поддержка.</li>
+                </ul>
+            </div>
+            <button onclick="buySubscription('Pro', 20, 'USDT')" class="btn">Купить</button>
+        </div>
+
+        <!-- Подписка Premium -->
+        <div class="subscription">
+            <h2>Premium</h2>
+            <p>Цена: 50 USDT</p>
+            <button onclick="toggleDescription('premium')" class="btn">Подробнее</button>
+            <div id="premium" class="description">
+                <p>Полный доступ ко всем функциям:</p>
+                <ul>
+                    <li>Эксклюзивная аналитика.</li>
+                    <li>Персональный менеджер.</li>
+                    <li>Ранний доступ к новым функциям.</li>
+                </ul>
+            </div>
+            <button onclick="buySubscription('Premium', 50, 'USDT')" class="btn">Купить</button>
+        </div>
+    </div>
+
+    <!-- Окно с QR-кодом -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span onclick="closeModal()" class="close">&times;</span>
+            <h2>Оплатите подписку</h2>
+            <p>Отсканируйте QR-код или переведите средства на адрес:</p>
+            <p id="walletAddress">0xТВОЙ_АДРЕС_КОШЕЛЬКА</p>
+            <img id="qrCode" src="" alt="QR Code">
+            <p>После оплаты нажмите "Я оплатил".</p>
+            <button onclick="confirmPayment()" class="btn">Я оплатил</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Manix. Все права защищены.</p>
+        <p><a href="#">Политика конфиденциальности</a></p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

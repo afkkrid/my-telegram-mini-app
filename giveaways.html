@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Розыгрыши - Manix</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Розыгрыши и акции</h1>
+        <nav>
+            <a href="index.html">На главную</a>
+            <a href="subscriptions.html">Подписки</a>
+            <a href="exchange.html">Обмен криптовалюты</a>
+        </nav>
+
+        <!-- Карточки с розыгрышами -->
+        <div class="giveaways">
+            <!-- Розыгрыш 1 -->
+            <div class="giveaway-card">
+                <h2>Розыгрыш 1 BTC</h2>
+                <p>Участвуйте в розыгрыше и выиграйте 1 Bitcoin!</p>
+                <p>Осталось времени:</p>
+                <div id="timer1" class="timer">00:00:00</div>
+                <button onclick="participate('1 BTC')" class="btn">Участвовать</button>
+            </div>
+
+            <!-- Розыгрыш 10 ETH -->
+            <div class="giveaway-card">
+                <h2>Розыгрыш 10 ETH</h2>
+                <p>Участвуйте в розыгрыше и выиграйте 10 Ethereum!</p>
+                <p>Осталось времени:</p>
+                <div id="timer2" class="timer">00:00:00</div>
+                <button onclick="participate('10 ETH')" class="btn">Участвовать</button>
+            </div>
+
+            <!-- Розыгрыш 1000 USDT -->
+            <div class="giveaway-card">
+                <h2>Розыгрыш 1000 USDT</h2>
+                <p>Участвуйте в розыгрыше и выиграйте 1000 USDT!</p>
+                <p>Осталось времени:</p>
+                <div id="timer3" class="timer">00:00:00</div>
+                <button onclick="participate('1000 USDT')" class="btn">Участвовать</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Manix. Все права защищены.</p>
+        <p><a href="privacy-policy.html">Политика конфиденциальности</a></p>
+    </footer>
+
+    <!-- Подключаем JavaScript -->
+    <script>
+        // Установим время окончания розыгрышей (в формате Unix timestamp)
+        const endTimes = {
+            timer1: new Date().getTime() + 24 * 60 * 60 * 1000, // Через 24 часа
+            timer2: new Date().getTime() + 48 * 60 * 60 * 1000, // Через 48 часов
+            timer3: new Date().getTime() + 72 * 60 * 60 * 1000, // Через 72 часа
+        };
+
+        // Функция для обновления таймеров
+        function updateTimers() {
+            const now = new Date().getTime();
+
+            Object.keys(endTimes).forEach(timerId => {
+                const timeLeft = endTimes[timerId] - now;
+
+                if (timeLeft > 0) {
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                    document.getElementById(timerId).textContent =
+                        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                } else {
+                    document.getElementById(timerId).textContent = "Розыгрыш завершен!";
+                }
+            });
+        }
+
+        // Обновляем таймеры каждую секунду
+        setInterval(updateTimers, 1000);
+
+        // Функция для участия в розыгрыше
+        function participate(prize) {
+            alert(`Вы участвуете в розыгрыше ${prize}! Удачи!`);
+        }
+    </script>
+</body>
+</html>

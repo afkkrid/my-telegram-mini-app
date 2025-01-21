@@ -1,0 +1,282 @@
+/* Основные стили */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0b0e11; /* Темный фон */
+    color: #eaecef; /* Светлый текст */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #f0b90b; /* Золотой цвет, как у Binance */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Навигация */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #f0b90b; /* Золотой цвет */
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: 2px solid #f0b90b;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #f0b90b;
+    color: #0b0e11; /* Темный фон при наведении */
+}
+
+/* Карточки подписок */
+.subscription {
+    background-color: #1e2329; /* Темный фон для карточек */
+    border: 1px solid #2b3139; /* Граница */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.subscription:hover {
+    transform: translateY(-10px);
+}
+
+.subscription h2 {
+    color: #f0b90b; /* Золотой цвет */
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.subscription p {
+    color: #848e9c; /* Серый текст */
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.subscription .btn {
+    background-color: #f0b90b; /* Золотой цвет */
+    color: #0b0e11; /* Темный текст */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin: 10px 5px;
+}
+
+.subscription .btn:hover {
+    background-color: #c9940b; /* Темнее золотой */
+}
+
+/* Описание подписок */
+.description {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    margin-top: 10px;
+    color: #848e9c; /* Серый текст */
+}
+
+.description ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.description li {
+    margin-bottom: 10px;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #1e2329;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #f0b90b;
+}
+
+.close:hover {
+    color: #c9940b;
+}
+
+#walletAddress {
+    word-break: break-all;
+    margin: 20px 0;
+    color: #f0b90b;
+}
+
+#qrCode {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    display: block;
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #1e2329; /* Темный фон */
+    color: #848e9c; /* Серый текст */
+}
+
+footer a {
+    color: #f0b90b; /* Золотой цвет */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+/* Форма для обмена */
+.exchange-form {
+    background-color: #1e2329; /* Темный фон для формы */
+    border: 1px solid #2b3139; /* Граница */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 400px;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #f0b90b; /* Золотой цвет */
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #2b3139;
+    border-radius: 5px;
+    background-color: #0b0e11;
+    color: #eaecef;
+}
+
+.form-group input[readonly] {
+    background-color: #2b3139;
+    cursor: not-allowed;
+}
+
+.btn {
+    background-color: #f0b90b;
+    color: #0b0e11;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #c9940b; /* Темнее золотой */
+}
+/* Карточки розыгрышей */
+.giveaways {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.giveaway-card {
+    background-color: #1e2329; /* Темный фон для карточек */
+    border: 1px solid #2b3139; /* Граница */
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.giveaway-card:hover {
+    transform: translateY(-10px);
+}
+
+.giveaway-card h2 {
+    color: #f0b90b; /* Золотой цвет */
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.giveaway-card p {
+    color: #848e9c; /* Серый текст */
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.timer {
+    font-size: 1.2rem;
+    color: #f0b90b; /* Золотой цвет */
+    margin-bottom: 15px;
+}
+
+.btn {
+    background-color: #f0b90b;
+    color: #0b0e11;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #c9940b; /* Темнее золотой */
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обмен криптовалюты - Manix</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Обмен криптовалюты</h1>
+        <nav>
+            <a href="index.html">На главную</a>
+            <a href="subscriptions.html">Подписки</a>
+        </nav>
+
+        <!-- Форма для обмена криптовалюты -->
+        <div class="exchange-form">
+            <h2>Обменять криптовалюту</h2>
+            <form id="exchangeForm">
+                <div class="form-group">
+                    <label for="fromCurrency">Отдаете:</label>
+                    <select id="fromCurrency" required>
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="USDT">Tether (USDT)</option>
+                    </select>
+                    <input type="number" id="fromAmount" placeholder="Сумма" required>
+                </div>
+                <div class="form-group">
+                    <label for="toCurrency">Получаете:</label>
+                    <select id="toCurrency" required>
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="USDT">Tether (USDT)</option>
+                    </select>
+                    <input type="number" id="toAmount" placeholder="Сумма" readonly>
+                </div>
+                <button type="submit" class="btn">Обменять</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Manix. Все права защищены.</p>
+        <p><a href="privacy-policy.html">Политика конфиденциальности</a></p>
+    </footer>
+
+    <!-- Подключаем JavaScript -->
+    <script>
+        // Обработка формы обмена
+        document.getElementById('exchangeForm').addEventListener('submit', async function (e) {
+            e.preventDefault(); // Отменяем стандартное поведение формы
+
+            const fromCurrency = document.getElementById('fromCurrency').value;
+            const fromAmount = document.getElementById('fromAmount').value;
+            const toCurrency = document.getElementById('toCurrency').value;
+
+            if (!fromCurrency || !toCurrency || !fromAmount) {
+                alert('Заполните все поля!');
+                return;
+            }
+
+            // Получаем курс обмена через API (например, CoinGecko)
+            const exchangeRate = await getExchangeRate(fromCurrency, toCurrency);
+            if (!exchangeRate) {
+                alert('Не удалось получить курс обмена. Попробуйте позже.');
+                return;
+            }
+
+            // Рассчитываем сумму получаемой валюты
+            const toAmount = fromAmount * exchangeRate;
+            document.getElementById('toAmount').value = toAmount.toFixed(8); // Отображаем результат
+
+            alert(`Вы обмениваете ${fromAmount} ${fromCurrency.toUpperCase()} на ${toAmount.toFixed(8)} ${toCurrency.toUpperCase()}`);
+        });
+
+        // Получение курса обмена через CoinGecko API
+        async function getExchangeRate(from, to) {
+            // Соответствие тикеров идентификаторам CoinGecko
+            const coinIds = {
+                BTC: 'bitcoin',
+                ETH: 'ethereum',
+                USDT: 'tether',
+            };
+
+            const fromId = coinIds[from];
+            const toId = coinIds[to];
+
+            if (!fromId || !toId) {
+                console.error('Неподдерживаемая валюта.');
+                return null;
+            }
+
+            try {
+                const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${fromId}&vs_currencies=${toId}`);
+                const data = await response.json();
+
+                if (data[fromId] && data[fromId][toId]) {
+                    return data[fromId][toId];
+                } else {
+                    console.error('Курс обмена не найден.');
+                    return null;
+                }
+            } catch (error) {
+                console.error('Ошибка при получении курса обмена:', error);
+                return null;
+            }
+        }
+    </script>
+</body>
+</html>
